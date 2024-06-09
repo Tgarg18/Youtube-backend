@@ -8,6 +8,7 @@ export { asyncHandler }
 
 // const asyncHandler = () => {}
 // const asyncHandler = () => {() => {}}
+// const asyncHandler = () => {async () => {}}
 // const asyncHandler = () => async () => {}
 
 
