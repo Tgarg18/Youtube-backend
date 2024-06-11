@@ -2,8 +2,8 @@ import { asyncHandler } from '../utils/asyncHandler.js';
 import { ApiError } from '../utils/ApiError.js';
 import { User } from '../models/user.model.js';
 import { uploadCloudinary } from '../utils/cloudinary.js';
-import { ApiResponse } from '../utils/ApiResponse.js'
-import jwt from 'jsonwebtoken'
+import { ApiResponse } from '../utils/ApiResponse.js';
+import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 
 const generateAccessAndRefreshTokens = async (userId) => {
@@ -134,8 +134,8 @@ const logoutUser = asyncHandler(async (req, res) => {
     await User.findOneAndUpdate(
         req.user._id,
         {
-            $set: {
-                refreshToken: undefined
+            $unset: {
+                refreshToken: 1
             }
         },
         {
@@ -406,4 +406,16 @@ const getWatchHistory = asyncHandler(async (req, res) => {
         .json(new ApiResponse(200, user[0].watchHistory, "Watch history fetched successfully"))
 })
 
-export { registerUser, loginUser, logoutUser, refreshAccessToken, changeCurrentPassword, getCurrentUser, updateAccountDetails, updateUserAvatar, updateUserCoverImage, getUserChannelProfile, getWatchHistory }
+export {
+    registerUser,
+    loginUser,
+    logoutUser,
+    refreshAccessToken,
+    changeCurrentPassword,
+    getCurrentUser,
+    updateAccountDetails,
+    updateUserAvatar,
+    updateUserCoverImage,
+    getUserChannelProfile,
+    getWatchHistory
+}
